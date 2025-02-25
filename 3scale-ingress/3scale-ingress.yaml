@@ -1,0 +1,89 @@
+apiVersion: apps.3scale.net/v1alpha1
+kind: APIManager
+metadata:
+ name: 3scale-apimanager
+ namespace: 3scale-ingress
+spec:
+ imageStreamTagImportInsecure: false
+ resourceRequirementsEnabled: false
+ system:
+   appSpec:
+     replicas: 2
+   searchdSpec: {}
+   sidekiqSpec:
+     replicas: 2
+   sphinxSpec: {}
+ appLabel: 3scale-api-management
+ zync:
+   appSpec:
+     replicas: 2
+     resources:
+       limits:
+         cpu: '1'
+         memory: 750Mi
+       requests:
+         cpu: 150m
+         memory: 256Mi
+   queSpec:
+     replicas: 2
+     resources:
+       limits:
+         cpu: '1'
+         memory: 750Mi
+       requests:
+         cpu: 250m
+         memory: 256Mi
+ backend:
+   cronSpec:
+     replicas: 2
+     resources:
+       limits:
+         cpu: 500m
+         memory: 750Mi
+       requests:
+         cpu: 100m
+         memory: 256Mi
+   listenerSpec:
+     replicas: 19
+     resources:
+       limits:
+         cpu: '1'
+         memory: 1Gi
+       requests:
+         cpu: 500m
+         memory: 500Mi
+   redisResources:
+     limits:
+       cpu: 2
+       memory: 64Gi
+     requests:
+       cpu: 1
+       memory: 1Gi
+   workerSpec:
+     replicas: 19
+     resources:
+       limits:
+         cpu: '1'
+         memory: 750Mi
+       requests:
+         cpu: 150m
+         memory: 256Mi
+ tenantName: 3scale
+ apicast:
+   managementAPI: debug
+   openSSLVerify: false
+   productionSpec:
+     logLevel: warn
+     replicas: 18
+     resources:
+       limits:
+         cpu: '1'
+         memory: 750Mi
+       requests:
+         cpu: 500m
+         memory: 256Mi
+   registryURL: 'http://apicast-staging:8090/policies'
+   responseCodes: true
+   stagingSpec:
+     replicas: 1
+ wildcardDomain: apps.cluster-z79c7.z79c7.sandbox1874.opentlc.com
