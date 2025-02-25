@@ -1,0 +1,25 @@
+apiVersion: v1
+metadata:
+  name: vol01
+spec:
+  capacity:
+    storage: 100Mi
+  nfs:
+    server: 13.60.153.10
+    path: /srv/nfs/ingress/vol
+  accessModes:
+    - ReadWriteMany
+
+---
+
+apiVersion: v1
+metadata:
+  name: vol01
+spec:
+  capacity:
+    storage: 100Mi
+  nfs:
+    server: 13.60.153.10
+    path: /srv/nfs/ingress/vol
+  accessModes:
+    - ReadWriteMany
