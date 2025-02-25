@@ -1,0 +1,31 @@
+apiVersion: v1
+metadata:
+  name: system-storage
+  namespace: 3scale-ingress
+  finalizers:
+    - kubernetes.io/pvc-protection
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi
+  storageClassName: ''
+  volumeMode: Filesystem
+
+---
+
+apiVersion: v1
+metadata:
+  name: system-storage
+  namespace: 3scale-egress
+  finalizers:
+    - kubernetes.io/pvc-protection
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi
+  storageClassName: ''
+  volumeMode: Filesystem
