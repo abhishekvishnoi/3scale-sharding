@@ -44,7 +44,7 @@ spec:
          cpu: 100m
          memory: 256Mi
    listenerSpec:
-     replicas: 19
+     replicas: 2
      resources:
        limits:
          cpu: '1'
@@ -60,7 +60,7 @@ spec:
        cpu: 1
        memory: 1Gi
    workerSpec:
-     replicas: 19
+     replicas: 2
      resources:
        limits:
          cpu: '1'
